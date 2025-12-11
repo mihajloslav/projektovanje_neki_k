@@ -1,0 +1,44 @@
+CREATE DATABASE 08122025_broj_indeksa;
+
+
+CREATE TABLE nastavnik (  
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  sifra VARCHAR(255) NOT NULL,
+  UNIQUE INDEX UNIQUE_EMAIL (email)
+);
+
+
+
+CREATE TABLE predmet (  
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  naziv VARCHAR(255) NOT NULL,
+  espb INT NOT NULL
+);
+
+
+CREATE TABLE angazovanje (  
+  nastavnik_id INT NOT NULL,
+  predmet_id INT NOT NULL,
+  oblik VARCHAR(255) NOT NULL,
+  PRIMARY KEY(nastavnik_id, predmet_id, oblik),
+  FOREIGN KEY (nastavnik_id) REFERENCES nastavnik(id),
+  FOREIGN KEY (predmet_id) REFERENCES predmet(id)
+);
+
+
+
+INSERT INTO nastavnik(email,sifra)
+VALUES('zoran@zoran.com', 'zoran123'),
+('petar@petar.com', 'petar123')
+
+INSERT INTO predmet(naziv,espb)
+VALUES('programiranje 1' , 5),
+('programiranje 2', 6),
+('programiranje 3', 7)
+
+
+INSERT INTO angazovanje(nastavnik_id, predmet_id, oblik)
+VALUES(1,2, 'PREDAVANJE'),
+(2,3, 'VEZBE')
+
