@@ -36,10 +36,15 @@ public class GlavnaForma extends javax.swing.JFrame {
         jTablePredmet.setModel(pmt);
         
         List<Predmet> listaSvih = Controller.getInstance().vratiListuSvihPredmeta();
-        
-        
-        
-        
+        for (Predmet p : lista){
+            if(listaSvih.contains(p)){
+                listaSvih.remove(p);
+            }
+        }
+            jComboBoxPredmet.setEnabled(!listaSvih.isEmpty());
+            jComboBoxOblik.setEnabled(!listaSvih.isEmpty());
+            jButtonUnesi.setEnabled(!listaSvih.isEmpty());
+       
         DefaultComboBoxModel<Predmet> model = new DefaultComboBoxModel<>(listaSvih.toArray(new Predmet[0]));
         jComboBoxPredmet.setModel(model);
     
@@ -59,7 +64,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         jButtonOblici = new javax.swing.JButton();
         jComboBoxPredmet = new javax.swing.JComboBox<>();
         jComboBoxOblik = new javax.swing.JComboBox<>();
-        jToggleButtonUnesi = new javax.swing.JToggleButton();
+        jButtonUnesi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,8 +87,8 @@ public class GlavnaForma extends javax.swing.JFrame {
         jComboBoxOblik.setModel(new DefaultComboBoxModel<OblikNastave>(OblikNastave.values())
         );
 
-        jToggleButtonUnesi.setText("Unesi");
-        jToggleButtonUnesi.addActionListener(this::jToggleButtonUnesiActionPerformed);
+        jButtonUnesi.setText("Unesi");
+        jButtonUnesi.addActionListener(this::jButtonUnesiActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,7 +105,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jComboBoxOblik, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxPredmet, 0, 153, Short.MAX_VALUE)
-                    .addComponent(jToggleButtonUnesi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonUnesi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
@@ -116,7 +121,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jComboBoxOblik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jToggleButtonUnesi)))
+                        .addComponent(jButtonUnesi)))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonOblici)
                 .addContainerGap(77, Short.MAX_VALUE))
@@ -141,8 +146,8 @@ public class GlavnaForma extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonObliciActionPerformed
 
-    private void jToggleButtonUnesiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonUnesiActionPerformed
-        boolean uspesno = Controller.getInstance().unesiNovoAngazovanje((Predmet)jComboBoxPredmet.getSelectedItem(), (OblikNastave)jComboBoxOblik.getSelectedItem());
+    private void jButtonUnesiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUnesiActionPerformed
+         boolean uspesno = Controller.getInstance().unesiNovoAngazovanje((Predmet)jComboBoxPredmet.getSelectedItem(), (OblikNastave)jComboBoxOblik.getSelectedItem());
         OsveziTabelu();
         
         if(uspesno){
@@ -152,8 +157,7 @@ public class GlavnaForma extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "DESILA SE GREŠKA PRILIKOM UNOSA NOVOG ANGAŽOVANJA");
         }
         
-        
-    }//GEN-LAST:event_jToggleButtonUnesiActionPerformed
+    }//GEN-LAST:event_jButtonUnesiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,10 +186,10 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonOblici;
+    private javax.swing.JButton jButtonUnesi;
     private javax.swing.JComboBox<OblikNastave> jComboBoxOblik;
     private javax.swing.JComboBox<Predmet> jComboBoxPredmet;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePredmet;
-    private javax.swing.JToggleButton jToggleButtonUnesi;
     // End of variables declaration//GEN-END:variables
 }
