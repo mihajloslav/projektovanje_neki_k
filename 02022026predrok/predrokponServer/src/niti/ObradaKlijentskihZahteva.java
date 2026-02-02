@@ -48,7 +48,7 @@ public class ObradaKlijentskihZahteva extends Thread{
                         boolean postoji = false;
                         for(ObradaKlijentskihZahteva k : Controller.getInstance().getKlijenti()){
                             String kUsername = k.getUlogovani().getUsername().toLowerCase();
-                            if(kUsername.equals(split[1])){
+                            if(kUsername.equals(split[1].toLowerCase())){
                                 postoji = true;
                             }
                         }
@@ -59,7 +59,8 @@ public class ObradaKlijentskihZahteva extends Thread{
 
                         for(Korisnik k : Controller.getInstance().getKorisnici()){
                             String kUsername = k.getUsername().toLowerCase();
-                            if(kUsername.equals(split[1])){
+                            if(kUsername.equals(split[1].toLowerCase())){
+                                System.out.println("VALJA");
                                 ulogovani = k;
                             }
                         }
