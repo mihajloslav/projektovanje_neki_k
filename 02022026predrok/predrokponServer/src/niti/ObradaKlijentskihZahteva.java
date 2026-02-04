@@ -41,7 +41,7 @@ public class ObradaKlijentskihZahteva extends Thread{
             switch (kz.getOperacija()) {
                 case LOGIN:
                     if(ulogovani == null){
-                        if(Controller.getInstance().getKlijenti().size() >= 2){
+                        if(Controller.getInstance().getKlijenti().size() >= 3){
                             posaljiOdgovor(new ServerskiOdgovor(null, "ERROR:Server Full"));
                             break;
                         }
@@ -135,7 +135,7 @@ public class ObradaKlijentskihZahteva extends Thread{
     
     public void ugasiKlijenta(){
         kraj = true;
-        if(s != null && s.isClosed()){
+        if(s != null && !s.isClosed()){
             try {
                 s.close();
             } catch (IOException ex) {
