@@ -147,6 +147,10 @@ public class KlijentskaForma extends javax.swing.JFrame {
                     this.dispose();
                 }else JOptionPane.showMessageDialog(null, "NISTE ULOGOVANI");
                 break;
+            case "SEND":
+                if(ulogovani != null){
+                
+                }else JOptionPane.showMessageDialog(null, "NISTE ULOGOVANI");
             default:
                 if(ulogovani != null)
                     JOptionPane.showMessageDialog(null, "NISTE LEPO UNELI KOMANDU");
